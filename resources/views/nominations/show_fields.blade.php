@@ -18,8 +18,8 @@
 
 <!-- Linked-In Field -->
 <div class="form-group">
-    {!! Form::label('linked-in', 'Linked-In:') !!}
-    <p>{!! $nomination->linked-in !!}</p>
+    {!! Form::label('linkedin_url', 'LinkedIn:') !!}
+    <p>{!! $nomination->linkedin_url !!}</p>
 </div>
 
 <!-- Bio Field -->

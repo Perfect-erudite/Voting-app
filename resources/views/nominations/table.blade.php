@@ -20,7 +20,7 @@
         <tr>
             <td>{!! $nomination->name !!}</td>
             <td>{!! $nomination->gender !!}</td>
-            <td>{!! $nomination->linked-in !!}</td>
+            <td>{!! $nomination->linkedin_url !!}</td>
             <td>{!! $nomination->bio !!}</td>
             <td>{!! $nomination->business_name !!}</td>
             <td>{!! $nomination->reason_for_nomination !!}</td>

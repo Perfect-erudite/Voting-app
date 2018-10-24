@@ -15,7 +15,7 @@
 
 <!-- Linked-In Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('linked-in', 'Linked-In:') !!}
+    {!! Form::label('linkedin_url', 'LinkedIn:') !!}
     {!! Form::text('linked-in', null, ['class' => 'form-control']) !!}
 </div>
 
