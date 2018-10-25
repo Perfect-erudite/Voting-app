@@ -3,7 +3,7 @@
         <tr>
             <th>Name</th>
         <th>Gender</th>
-        <th>Linked-In</th>
+        <th>LinkedIn</th>
         <th>Bio</th>
         <th>Business Name</th>
         <th>Reason For Nomination</th>

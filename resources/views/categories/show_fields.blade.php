@@ -75,14 +75,26 @@
                             <div class="col-sm-6 border-right">
                                 <div class="description-block">
                                     <h5 class="description-header">Nominations</h5>
-                                    <span class="description-text">{!! $nomination->no_of_nomination !!}</span>
+                                    <span class="description-text">{!! $nomination->no_of_nominations !!}</span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
                             <div class="box-footer no-padding">
                                 <ul class="nav nav-stacked">
-                                    {{-- <li><a href="www.facebook.com">Facebook Profile<span class="pull-right">View</span></a></li> --}}
-                                    <li>Joined <span class="pull-right">{!! $nomination->created_at->format('D, M, Y') !!}</span></li>
+                                  @if(isset($monimation->linkedin_url))
+                                    <li><a href="{!! $nomination->linkedin_url !!}">Linkedin<span class="pull-right">Profile</span></a></li>
+                                  @endif
+                                    <li><b>Nominated on </b><span class="pull-right">{!! $nomination->created_at->format('D, M, Y') !!}</span></li>
+                                    <li><b>Reason For Nomination: </b><span class="pull-right"> {!! $nomination->reason_for_nomination !!}</span></li>
+                                    <li><b>Business Name: </b><span class="pull-right"> {!! $nomination->business_name !!}</span></li>
+                                    <li><b>Bio: </b><span class="pull-right"> {!! $nomination->bio !!}</span></li>  
+                                    <li><b>Selected By Admin: </b><span class="pull-right"> 
+                                      @if($nomination->is_admin_selected)
+                                          yes
+                                      @else
+                                          Not yet
+                                      @endif
+                                    </span></li>                                                                                                          
                                 </ul>
                             </div>
                             <!-- /.col -->

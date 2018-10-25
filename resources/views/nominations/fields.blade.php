@@ -16,7 +16,7 @@
 <!-- Linked-In Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('linkedin_url', 'LinkedIn:') !!}
-    {!! Form::text('linked-in', null, ['class' => 'form-control']) !!}
+    {!! Form::text('linkedin_url', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Bio Field -->
