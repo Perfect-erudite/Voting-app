@@ -7,7 +7,7 @@
         <h5 class="widget-user-desc">{{$user->email}}</h5>
         </div>
         <div class="widget-user-image">
-        <img class="img-circle" src="http://infyom.com/images/logo/blue_logo_150x150.jpg" alt="{{$user->name}}">
+        <img class="img-circle" src="{{ asset('image/Ayo.jpg')}}" alt="{{$user->name}}">
         </div>
         <div class="box-footer">
                 <div class="row">

@@ -46,6 +46,8 @@ Route::middleware(['auth'])->group(function(){
 //Admin and Moderator can access this
 Route::middleware(['moderator', 'auth'])->group(function(){
     Route::resource('nominationUsers', 'NominationUserController');
+
+    Route::resource('categories', 'CategoryController');
     
     //Users
     Route::get('users', 'UserController@index');
@@ -69,6 +71,12 @@ Route::middleware(['moderator', 'auth'])->group(function(){
 
     //Visible only to admin
     Route::middleware(['admin'])->group(function(){
+
+        Route::resource('nominations', 'NominationController');
+
+        Route::resource('votings', 'VotingController');
+
+        Route::resource('categories', 'CategoryController');
 
         Route::resource('roles', 'RoleController');
 

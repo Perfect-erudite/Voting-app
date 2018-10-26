@@ -11,7 +11,7 @@
     @foreach($categories as $category)
         <tr>
             <td>
-                    <a href="{!! route('categories.show', [$category->id]) !!}" class='btn btn-default btn-xs'>
+                    <a href="{!! route('categories.show', [$category->id]) !!}" class='btn btn-default btn-md'>
                         {!! $category->name !!}</td>
                     </a>
                 
