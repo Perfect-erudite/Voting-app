@@ -1,4 +1,4 @@
-    <div class="col-md-3">
+    <div class="col-md-2">
 
       <!-- Profile Image -->
       <div class="box box-primary">
@@ -8,19 +8,6 @@
 
           <p class="text-muted text-center">Last Updated: {!! $category->updated_at->format('D, M, Y') !!}</p>
 
-          {{-- <ul class="list-group list-group-unbordered">
-            <li class="list-group-item">
-              <b>Followers</b> <a class="pull-right">1,322</a>
-            </li>
-            <li class="list-group-item">
-              <b>Following</b> <a class="pull-right">543</a>
-            </li>
-            <li class="list-group-item">
-              <b>Friends</b> <a class="pull-right">13,287</a>
-            </li>
-          </ul>
-
-          <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> --}}
         </div>
         <!-- /.box-body --> 
       </div>
@@ -30,15 +17,23 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#nomination" data-toggle="tab" aria-expanded="true">Nomination</a></li>
-          <li><a href="#vote" data-toggle="tab" aria-expanded="false">Vote</a></li>
-
-
-          @if(Auth::user()->role_id < 3)
-          <li class="active"><a href="#nominees" data-toggle="tab" aria-expanded="false">Nominees</a></li>
+          {{-- Only voters should be able to see nomination and vote tab --}}
+          @if(Auth::user()->role_id == 4)
+            <li class="active"><a href="#nomination" data-toggle="tab" aria-expanded="true">My Nomination</a></li>
+            <li><a href="#vote" data-toggle="tab" aria-expanded="false">My Vote</a></li>
           @endif
+
+          
+          <li class="
+            @if(Auth::user()->role_id != 4)
+                active
+            @endif
+          "><a href="#nominees" data-toggle="tab" aria-expanded="false">Nominees</a></li>
+
         </ul>
+
         <div class="tab-content">
+            @if(Auth::user()->role_id == 4)
           <div class="active tab-pane" id="nomination">
               @if(!isset($hasNominatedBefore) || $hasNominatedBefore == 0)            
             <p><h3>Nominate a candidate</h3></p>
@@ -105,19 +100,38 @@
             </div>
         
         @endif
-        
+          </div>
+              <div class='tab-pane' id='vote'>
+
+              </div>
+            @endif
 
 
           </div>
-          <!-- /.tab-pane -->
-          <div class="tab-pane" id="vote">
-             Add content here
-          </div>
-          <!-- /.tab-pane -->
-
           <div class="tab-pane" id="nominees">
-            
-            {{-- Put Content here --}}
+            <h2>Selected Nominees</h3>
+              @if(isset($nomiantionSelecteds))
+            {{-- Selected nominees--}}
+            <div class="box box-primary">
+              <div class="box-body">
+                      @include('nominations.selected-nominees')
+              </div>
+          </div>
+          @else
+            <p>There exist no selected nominee for voting</p>
+          @endif
+
+            @if(Auth::user()->role_id < 3)
+              {{-- All nominees --}}
+              <h3>All Nominees</h3>
+              <p>Only Admin can see the list below</p>
+              <div class="box box-primary">
+                <div class="box-body">
+                        @include('nominations.table')
+                </div>
+            </div>
+
+            @endif
 
           </div>
           <!-- /.tab-pane -->

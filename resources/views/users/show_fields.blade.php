@@ -26,6 +26,7 @@
                           </div>
                           <!-- /.description-block -->
                         </div>
+                      </div>
 
 
 

@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use App\Models\Nomination;
 use App\Models\NominationUser;
+use App\Models\Nomination;
 use Auth;
 
 class CategoryController extends AppBaseController
@@ -35,8 +35,11 @@ class CategoryController extends AppBaseController
         $this->categoryRepository->pushCriteria(new RequestCriteria($request));
         $categories = $this->categoryRepository->all();
 
+        
+
         return view('categories.index')
             ->with('categories', $categories);
+            
     }
 
     /**
@@ -84,6 +87,9 @@ class CategoryController extends AppBaseController
             return redirect(route('categories.index'));
         }
 
+        $nominations = Nomination::all(); //all nominations
+        $nominationSelecteds = Nomination::where('is_admin_selected', 1)->get(); //admin selected nominations
+
         //Check if user has nominated someone in this category before
         //A user can only nominate one person per category
         $nominationUser = NominationUser::where('user_id', Auth::user()->id)
@@ -96,10 +102,16 @@ class CategoryController extends AppBaseController
             //get details the nomination they made
             $nomination = Nomination::find($nominationUser['nomination_id']);
             return view('categories.show')->with('category', $category)->with('nomination', $nomination)
-            ->with('hasNominatedBefore', $hasNominatedBefore);
+            ->with('hasNominatedBefore', $hasNominatedBefore)
+            ->with('nominations', $nominations)
+            ->with('nominationSelected', $nominationSelecteds);;
         }
 
-        return view('categories.show')->with('category', $category);
+        
+
+        return view('categories.show')->with('category', $category)
+            ->with('nominations', $nominations)
+            ->with('nominationSelected', $nominationSelecteds);
     }
 
     /**

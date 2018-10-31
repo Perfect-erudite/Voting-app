@@ -1,90 +1,64 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $nomination->id !!}</p>
-</div>
 
-<!-- Name Field -->
-<div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{!! $nomination->name !!}</p>
-</div>
-
-<!-- Gender Field -->
-<div class="form-group">
-    {!! Form::label('gender', 'Gender:') !!}
-    <p>{!! $nomination->gender !!}</p>
-</div>
-
-<!-- Linked-In Field -->
-<div class="form-group">
-    {!! Form::label('linkedin_url', 'LinkedIn:') !!}
-    <p>{!! $nomination->linkedin_url !!}</p>
-</div>
-
-<!-- Bio Field -->
-<div class="form-group">
-    {!! Form::label('bio', 'Bio:') !!}
-    <p>{!! $nomination->bio !!}</p>
-</div>
-
-<!-- Business Name Field -->
-<div class="form-group">
-    {!! Form::label('business_name', 'Business Name:') !!}
-    <p>{!! $nomination->business_name !!}</p>
-</div>
-
-<!-- Reason For Nomination Field -->
-<div class="form-group">
-    {!! Form::label('reason_for_nomination', 'Reason For Nomination:') !!}
-    <p>{!! $nomination->reason_for_nomination !!}</p>
-</div>
-
-<!-- No Of Nominations Field -->
-<div class="form-group">
-    {!! Form::label('no_of_nominations', 'No Of Nominations:') !!}
-    <p>{!! $nomination->no_of_nominations !!}</p>
-</div>
-
-<!-- Is Admin Selected Field -->
-<div class="form-group">
-    {!! Form::label('is_admin_selected', 'Is Admin Selected:') !!}
-    <p>{!! $nomination->is_admin_selected !!}</p>
-</div>
-
-<!-- Is Won Field -->
-<div class="form-group">
-    {!! Form::label('is_won', 'Is Won:') !!}
-    <p>{!! $nomination->is_won !!}</p>
-</div>
-
-<!-- User Id Field -->
-<div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $nomination->user_id !!}</p>
-</div>
 
 <!-- Category Id Field -->
 <div class="form-group">
-    {!! Form::label('category_id', 'Category Id:') !!}
-    <p>{!! $nomination->category_id !!}</p>
+    {!! Form::label('category_id', 'Category:') !!}
+    <p>{!! $nomination->category['name'] !!}</p>
 </div>
 
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $nomination->deleted_at !!}</p>
-</div>
 
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $nomination->created_at !!}</p>
-</div>
 
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $nomination->updated_at !!}</p>
-</div>
+<div class="col-md-6">
+        <div class="box box-widget widget-user">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-aqua-active">
+                    <h3 class="widget-user-username">{{$nomination->name}}</h3>
+                    <h5 class="widget-user-desc">{{$nomination->business_name}}</h5>
+                </div>
+                <div class="widget-user-image">
+                    <img class="img-circle" src="{{ asset('image/Ayo.jpg')}}" alt="{{$nomination->name}}">
+                </div>
+                <div class="box-footer">
+                            <div class="box-footer no-padding">
+                                <ul class="nav nav-stacked">
+                                  <li><b> Gender </b><span class="pull-right">{!! $nomination->gender !!}</span></li>  
 
+                                  <li><a href="{{ $nomination->linkedin_url }}"><b>Linkedin</b><span class="pull-right">View</span></a></li>
+
+                                  <li><b>Bio </b><span class="pull-right">{!! $nomination->bio !!}</span></li>
+
+                                  <li><b>Category </b><span class="pull-right">{!! $nomination->category['name'] !!}</span></li>
+
+                                  <li><b>Won?</b><span class="pull-right">{!! $nomination->is_won !!}</span></li>
+                                  
+                                  
+                                      
+                                  @if(Auth::user()->role_id < 3)
+                                  <li><b>Reason For Nomination</b><span class="pull-right">{!! $nomination->reason_for_nomination !!}</span></li>                                  
+
+                                  <li><b> Nominated on </b><span class="pull-right">{!! $nomination->created_at->format('D, M, Y') !!}</span></li>
+                                  
+                                  <li><a href="users/{!! $nomination->user['id'] !!}"><b>Nominated by </b><span class="pull-right">{!! $nomination->user['name'] !!}</span></a></li>
+
+                                  <li><b>Number of Nominations </b><span class="pull-right">{!! $nomination->no_of_nominations !!}</span></li>
+
+                                  <li><b>Selected by Admin?</b><span class="pull-right">
+                                    @if($nomination->is_admin_selected == 1)
+                                        yes
+                                    @else
+                                        no
+                                    @endif
+                                </span></li>                                  
+                                  @endif
+                                </ul>
+                            </div>
+                      </div>
+                  <!-- /.row -->
+            </div>
+        </div>
+</div>
+        
+        
+        
+        
+        

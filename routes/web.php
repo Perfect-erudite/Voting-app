@@ -17,20 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
 
-//Must be logged in 
-Route::middleware(['auth'])->group(function(){
-    Route::resource('categories', 'CategoryController');
 
-    Route::resource('nominations', 'NominationController');
-
-    Route::resource('votings', 'VotingController');
-
-    Route::resource('users', 'UserController');
-});
 
 
 // Route::group(['middleware' => ['admin']], function () {
@@ -87,6 +78,18 @@ Route::middleware(['moderator', 'auth'])->group(function(){
     }); 
 });
 
+//Must be logged in 
+Route::middleware(['auth'])->group(function(){
+    Route::resource('categories', 'CategoryController');
 
+    Route::resource('nominations', 'NominationController');
+
+    Route::resource('votings', 'VotingController');
+
+    Route::resource('users', 'UserController');
+
+    // Route::get('nominations/vote/{nomination_id}/{category_id}', 'NominationController@vote')->name('nominations.vote');
+
+});
 
 
