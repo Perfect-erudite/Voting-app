@@ -13,6 +13,18 @@
     </select>
   </div>
 
+  <!-- Category Id Field -->
+
+<div class="form-group col-sm-6">
+        <label for="sel1">Category:</label>
+        <select class="form-control" id="sel1" name="category_id">
+        <option value="{{ $nomination->category['id'] }}"> {{ $nomination->category['name'] }}</option>
+          @foreach($categories as $category)
+            <option value="{{ $category['name'] }}"> {{ $category['name'] }}</option>
+          @endforeach
+        </select>
+      </div>
+
 <!-- Linked-In Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('linkedin_url', 'LinkedIn:') !!}
@@ -43,37 +55,24 @@
 @if(Auth::user()->role_id < 3)
 <!-- Is Admin Selected Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('is_admin_selected', 'Is Admin Selected:') !!}
+    {!! Form::label('is_admin_selected', 'Selected for voting?') !!}
     <label class="checkbox-inline">
         {!! Form::hidden('is_admin_selected', false) !!}
-        {!! Form::checkbox('is_admin_selected', '1', null) !!} 1
+        {!! Form::checkbox('is_admin_selected', '1', null) !!} 
     </label>
 </div>
 
 <!-- Is Won Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('is_won', 'Is Won:') !!}
+    {!! Form::label('is_won', 'Won?') !!}
     <label class="checkbox-inline">
         {!! Form::hidden('is_won', false) !!}
-        {!! Form::checkbox('is_won', '1', null) !!} 1
+        {!! Form::checkbox('is_won', '1', null) !!} 
     </label>
 </div>
 @endif
 
-<!-- Category Id Field -->
 
-@if(isset($category->id))
-<div class="form-group col-sm-6">
-    {!! Form::hidden('category_id', 'Category Id:') !!}
-    {!! Form::hidden('category_id', $category->id, ['class' => 'form-control']) !!}
-</div
->
-@else
-<div class="form-group col-sm-6">
-    {!! Form::label('category_id', 'Category Id:') !!}
-    {!! Form::hidden('category_id', null, ['class' => 'form-control']) !!}
-</div>
-@endif
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

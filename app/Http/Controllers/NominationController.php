@@ -13,6 +13,7 @@ use Response;
 use Auth;
 use App\Models\Nomination;
 use App\Models\NominationUser;
+use App\Models\Category;
 
 class NominationController extends AppBaseController
 {
@@ -109,6 +110,7 @@ class NominationController extends AppBaseController
      */
     public function show($id)
     {
+        
         $nomination = $this->nominationRepository->findWithoutFail($id);
 
         if (empty($nomination)) {
@@ -129,6 +131,7 @@ class NominationController extends AppBaseController
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $nomination = $this->nominationRepository->findWithoutFail($id);
 
         if (empty($nomination)) {
@@ -137,7 +140,8 @@ class NominationController extends AppBaseController
             return redirect(route('nominations.index'));
         }
 
-        return view('nominations.edit')->with('nomination', $nomination);
+        return view('nominations.edit')->with('nomination', $nomination)
+        ->with('categories', $categories);
     }
 
     /**

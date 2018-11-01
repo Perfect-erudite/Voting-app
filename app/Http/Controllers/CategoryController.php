@@ -104,7 +104,7 @@ class CategoryController extends AppBaseController
             return view('categories.show')->with('category', $category)->with('nomination', $nomination)
             ->with('hasNominatedBefore', $hasNominatedBefore)
             ->with('nominations', $nominations)
-            ->with('nominationSelected', $nominationSelecteds);;
+            ->with('nominationSelecteds', $nominationSelecteds);;
         }
 
         

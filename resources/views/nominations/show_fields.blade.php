@@ -3,7 +3,7 @@
 <!-- Category Id Field -->
 <div class="form-group">
     {!! Form::label('category_id', 'Category:') !!}
-    <p>{!! $nomination->category['name'] !!}</p>
+    <p>{!! $nomination->category !!}</p>
 </div>
 
 
@@ -21,34 +21,34 @@
                 <div class="box-footer">
                             <div class="box-footer no-padding">
                                 <ul class="nav nav-stacked">
-                                  <li><b> Gender </b><span class="pull-right">{!! $nomination->gender !!}</span></li>  
+                                  <li><a href='#'><b> Gender </b><span class="pull-right">{!! $nomination->gender !!}</span></a></li>  
 
                                   <li><a href="{{ $nomination->linkedin_url }}"><b>Linkedin</b><span class="pull-right">View</span></a></li>
 
-                                  <li><b>Bio </b><span class="pull-right">{!! $nomination->bio !!}</span></li>
+                                  <li><a href='#'><b>Bio </b><span class="pull-right">{!! $nomination->bio !!}</span></a></li>
 
-                                  <li><b>Category </b><span class="pull-right">{!! $nomination->category['name'] !!}</span></li>
+                                  <li><a href='#'><b>Category </b><span class="pull-right">{!! $nomination->category['name'] !!}</span></a></li>
 
-                                  <li><b>Won?</b><span class="pull-right">{!! $nomination->is_won !!}</span></li>
+                                  <li><a href='#'><b>Won?</b><span class="pull-right">{!! $nomination->is_won !!}</span></a></li>
                                   
                                   
                                       
                                   @if(Auth::user()->role_id < 3)
-                                  <li><b>Reason For Nomination</b><span class="pull-right">{!! $nomination->reason_for_nomination !!}</span></li>                                  
+                                  <li><a href='#'><b>Reason For Nomination</b><span class="pull-right">{!! $nomination->reason_for_nomination !!}</span></a></li>                                  
 
-                                  <li><b> Nominated on </b><span class="pull-right">{!! $nomination->created_at->format('D, M, Y') !!}</span></li>
+                                  <li><a href='#'><b> Nominated on </b><span class="pull-right">{!! $nomination->created_at->format('D, M, Y') !!}</span></a></li>
                                   
                                   <li><a href="users/{!! $nomination->user['id'] !!}"><b>Nominated by </b><span class="pull-right">{!! $nomination->user['name'] !!}</span></a></li>
 
-                                  <li><b>Number of Nominations </b><span class="pull-right">{!! $nomination->no_of_nominations !!}</span></li>
+                                  <li><a href='#'><b>Number of Nominations </b><span class="pull-right">{!! $nomination->no_of_nominations !!}</span></a></li>
 
-                                  <li><b>Selected by Admin?</b><span class="pull-right">
-                                    @if($nomination->is_admin_selected == 1)
-                                        yes
-                                    @else
-                                        no
-                                    @endif
-                                </span></li>                                  
+                                  <li><a href='#'><b>Selected by Admin?</b><span class="pull-right">
+                                        @if($nomination->is_admin_selected == 1)
+                                            yes
+                                        @else
+                                            no
+                                        @endif
+                                </span></a></li>                                  
                                   @endif
                                 </ul>
                             </div>
